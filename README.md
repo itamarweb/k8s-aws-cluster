@@ -74,8 +74,13 @@ wget -qO - https://www.dropbox.com/s/kfsuo4bhku1h1oi/worker-node-setup.sh?dl=1  
  
  # 3. Join the nodes to the cluser
  
- run on each node the join command you saved from the master node setup
+ run on each node the join command you saved from the master node setup. run as a root - e.g 
  
+ 
+  ```
+  sudo sudo kubeadm join ....
+  ```
+  
  
  
  
