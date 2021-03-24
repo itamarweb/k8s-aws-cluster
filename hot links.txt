@@ -1,0 +1,18 @@
+https://www.dropbox.com/s/c3nd9au2x8yestq/master-node-setup.sh?dl=1
+
+https://www.dropbox.com/s/kfsuo4bhku1h1oi/worker-node-setup.sh?dl=1
+
+
+
+
+
+
+https://www.dropbox.com/s/qsradtlyjywxaod/redis-mapconfig.yaml?dl=1
+
+
+https://www.dropbox.com/s/m0it8kx39kpvebg/redis-pod.yaml?dl=1
+
+
+
+
+curl -s https://www.dropbox.com/s/c3nd9au2x8yestq/master-node-setup.sh?dl=1  |  bash
