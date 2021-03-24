@@ -1,10 +1,15 @@
 # k8s-aws-cluster
- simple AWS kubernetes cluster
+ a simple AWS kubernetes cluster with Redis
+ 
+ ## Objectives
+ - Learn the basics of deploying a kubernetes cluster
+ - Learn the basics of deploying an app with a MapConfig
 
 
 ## Basic requirements:
 - Basic knowledge in linux (ubuntu) administration
-- basic knowledge in AWS console - knowing how to launch instances and configure security groups
+- AWS or equivalent cloud provider
+- Basic knowledge in AWS console (orequivalent cloud provider consol)  - knowing how to launch instances and configure security groups (opening ports)
 
 
 
