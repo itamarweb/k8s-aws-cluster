@@ -156,7 +156,7 @@ ip-172-31-76-203   Ready    control-plane,master   10m     v1.20.5
    
    
    ## Close any unnecessary ports to the out side world
-   As discused in the Redis[Redis documentation.](https://redis.io/topics/security) - Redis was not build to be exposed to the outside world and must be firewalled.
+   As discussed in the [Redis documentation.](https://redis.io/topics/security) - Redis was not designed to be exposed to the outside world and must be firewalled.
    
   
   
