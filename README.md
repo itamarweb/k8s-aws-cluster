@@ -2,16 +2,16 @@
  simple AWS kubernetes cluster
 
 
-
-
-
+## Basic requirements:
+- Basic knowledge in linux (ubuntu) administration
+- basic knowledge in AWS console - knowing how to launch instances and configure security groups
 
 
 
 
 # 1. Lunch Instances and configure security settings
 
- - Use AWS EC2 consol to lunch 3 instances with ubuntu 20.2 LTS image.
+ - Use AWS EC2 consol to lunch 3 **new** instances with ubuntu 20.04 LTS image (name them: node1, node2 and master).
  - Make sure you have a lest 2 vCPUs and 4Gb of RAM. A good machin will be t2.medium
  - Connect them all to same security group. Later you can divide the security group to Nodes and Master.
  - Keep the default port 22 open for SSH. feel free to change it to your specific ip address.
@@ -28,7 +28,7 @@ make sure these port ar open at the security group settings:
  | TCP |	Inbound |	10251 |	kube-scheduler |
  | TCP |	Inbound |	10252 |	kube-controller-manager |
  | TCP |	Inbound |	30000 - 32767 |	NodePort Services |
- 
+ *open to the current security group
  
  # 2. Set up environments:
  
@@ -38,9 +38,46 @@ make sure these port ar open at the security group settings:
  
  ### Hot-linkcommand:
  ```
- sudo bash <(curl -s https://www.dropbox.com/s/c3nd9au2x8yestq/master-node-setup.sh?dl=1)
+wget -qO - https://www.dropbox.com/s/c3nd9au2x8yestq/master-node-setup.sh?dl=1  |  bash
  ```
  *if you don't want to use a hot-link you can download the "master-node-setup.sh" from the repository and run it from local path
+ 
+ 
+ Wait until the execution finishes.
+ 
+ If you see this line: "Setup finised successfully!" you're in a good place.
+ 
+ ---------------------------------------------------------
+ copy **to a secure location** the line that contains: 
+ ```
+ kubeadm join 172.31.76.61:6443 --token ******* \
+    --discovery-token-ca-cert-hash sha256:**************** 
+ ```
+ You will need it later to join a worker node to the cluster.
+ 
+  ---------------------------------------------------------
+ 
+ 
+ ## On each worker node:
+ 
+ open terminal on the worker node (or log in via SSH).
+ 
+ ### Hot-linkcommand:
+ ```
+wget -qO - https://www.dropbox.com/s/kfsuo4bhku1h1oi/worker-node-setup.sh?dl=1  |  bash
+ ```
+ *if you don't want to use a hot-link you can download the "master-node-setup.sh" from the repository and run it from local path
+ 
+ 
+ Wait until the execution finishes.
+ 
+ 
+ # 3. Join the nodes to the cluser
+ 
+ run on each node the join command you saved from the master node setup
+ 
+ 
+ 
  
  
  
