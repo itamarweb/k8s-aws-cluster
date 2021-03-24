@@ -23,10 +23,9 @@ echo \
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
-echo "Docker installation finished"
+echo "\n\n\n ----------- \n\n\n Docker installation finished! \n\n\n ----------- \n\n\n"
 
 # ------------------------------------ END: Docker installation --------------------------------------------
-
 
 
 # ------------------------------------     K8S installation     --------------------------------------------
@@ -41,8 +40,9 @@ sudo apt-get install -y kubelet kubeadm kubectl
 
 
 #Networking setup
-echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a "/etc/sysctl.conf"
 sudo sysctl -p
 
-#init the cluster
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+#finish notice
+
+printf "\n\n\n ----------- \n\n\nSetup finised successfully!\n\n\n----------- \n\n\n"

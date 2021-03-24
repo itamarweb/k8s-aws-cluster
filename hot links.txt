@@ -15,4 +15,4 @@ https://www.dropbox.com/s/m0it8kx39kpvebg/redis-pod.yaml?dl=1
 
 
 
-curl -s https://www.dropbox.com/s/c3nd9au2x8yestq/master-node-setup.sh?dl=1  |  bash
+wget -qO - https://www.dropbox.com/s/c3nd9au2x8yestq/master-node-setup.sh?dl=1  |  bash

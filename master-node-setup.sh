@@ -23,7 +23,7 @@ echo \
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
-echo "Docker installation finished"
+printf "\n\n\n ----------- \n\n\n Docker installation finished! \n\n\n ----------- \n\n\n"
 
 # ------------------------------------ END: Docker installation --------------------------------------------
 
@@ -46,3 +46,17 @@ sudo sysctl -p
 
 #Initialize the cluster
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+
+#set up a Kubernetes configuration file for general usage
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+#apply a common networking plugin - Flannel
+kubectl apply -f  https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+
+
+#finish notice
+JOINCOMMAND=$(sudo kubeadm token create --print-join-command)
+printf "\n\n\n ----------- \n\n\nSetup finised successfully!\n\nPlease copy the join command to a secure location: \n\n************** \n\n$JOINCOMMAND\n\n**************\n\n\n----------- \n\n\n"
