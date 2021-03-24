@@ -76,12 +76,90 @@ wget -qO - https://www.dropbox.com/s/kfsuo4bhku1h1oi/worker-node-setup.sh?dl=1  
  
  run on each node the join command you saved from the master node setup. run as a root - e.g 
  
- 
   ```
   sudo sudo kubeadm join ....
   ```
-  
  
+ 
+ # 4. Verifying setup 
+  
+  run on the master node: 
+ 
+  ```
+  kubectl get nodes
+  ```
+  
+  you should see something like this:
+
+ ```
+NAME               STATUS   ROLES                  AGE     VERSION
+ip-172-31-67-91    Ready    <none>                 57s     v1.20.5
+ip-172-31-69-75    Ready    <none>                 4m54s   v1.20.5
+ip-172-31-76-203   Ready    control-plane,master   10m     v1.20.5
+ ```
+  
+ # 5. Applying a Redis Config Map
+ 
+ run on the master node: 
+ 
+  ```
+  kubectl apply -f  https://www.dropbox.com/s/qsradtlyjywxaod/redis-mapconfig.yaml?dl=1
+  ```
+ 
+ 
+ # 6. Deploying a Redis pod:
+ 
+ run on the master node: 
+ 
+  ```
+  kubectl apply -f  https://www.dropbox.com/s/m0it8kx39kpvebg/redis-pod.yaml?dl=1
+  ```
+  
+ # 7. Verifying the deployment
+ 
+  run on the master node: 
+ 
+  ```
+  kubectl exec -it redis -- redis-cli
+  ```
+  
+  this will enter into the redis-cli tool.
+  authenticate:
+  ```
+  auth Tikal2021
+  ```
+  *"Tikal2021" is the defualt password applied by the config map file
+  
+  run some example commands:
+  ```
+  127.0.0.1:6379> set hello world
+  OK
+  127.0.0.1:6379> get hello
+  "world"
+  ```
+  
+  
+  # DONE!
+   now you have redis running on kubernetes with authentication and logging at DEBUG level.
+   
+   
+   # To Do:
+   
+   ## Deploy Redis as an app with a service and a stateful set
+   This is just an example of deploying a k8s cluster with redis running on top of it.
+   However the pod is not persisted - meaning that the data will be lost as the pod die (as often happens).
+   Therefore you need to change the deployment config files to deploy Redis as a [statful app.] (https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/)
+   this will presist the data and enables the user application access to the database from anywhere within the cluster.
+   
+   ## Harden the Redis deployment config
+   more over you need to harden the Redis config by changing harmful commandes as suggested by [Redis documentation.](https://redis.io/topics/security)
+   
+   
+   ## Close any unnecessary ports to the out side world
+   As discused in the Redis[Redis documentation.](https://redis.io/topics/security) - Redis was not build to be exposed to the outside world and must be firewalled.
+   
+  
+  
  
  
  
