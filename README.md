@@ -143,6 +143,14 @@ ip-172-31-76-203   Ready    control-plane,master   10m     v1.20.5
    now you have redis running on kubernetes with authentication and logging at DEBUG level.
    
    
+   
+   
+   
+   
+   
+   
+   
+   
    # To Do:
    
    ## Deploy Redis as an app with a service and a stateful set
